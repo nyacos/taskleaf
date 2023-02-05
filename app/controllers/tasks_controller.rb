@@ -33,8 +33,6 @@ class TasksController < ApplicationController
     redirect_to tasks_url, notice: "「#{task.name}」を削除しました。"
   end
 
-
-
   private
   
   def task_params
