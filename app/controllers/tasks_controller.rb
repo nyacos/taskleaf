@@ -3,12 +3,18 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
-  def show
-    @task = Task.find(params[:id])
-  end
-
   def new
     @task = Task.new
+  end
+
+  def create
+    task = Task.new(task_params)
+    task.save!
+    redirect_to tasks_url, notice: "タスク「#{task.name}」を登録しました。"
+  end
+  
+  def show
+    @task = Task.find(params[:id])
   end
 
   def edit
@@ -27,11 +33,7 @@ class TasksController < ApplicationController
     redirect_to tasks_url, notice: "「#{task.name}」を削除しました。"
   end
 
-  def create
-    task = Task.new(task_params)
-    task.save!
-    redirect_to tasks_url, notice: "タスク「#{task.name}」を登録しました。"
-  end
+
 
   private
   
